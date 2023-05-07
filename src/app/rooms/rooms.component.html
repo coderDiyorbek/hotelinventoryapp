@@ -1,0 +1,20 @@
+<h1>Welcome to {{ hotelName }}</h1>
+
+<div [hidden]="hideRooms">
+  Number of rooms:
+  <div
+    [ngStyle]="{ color: rooms.availableRooms > 10 ? 'green' : 'red' }"
+    [innerText]="numberOfRooms"
+  ></div>
+</div>
+
+<!-- bu xususiyat mavjudligini tekshiradi, ya'ni rooms ning availableRooms propertysi -->
+<!-- {{ rooms?.availableRooms ?? "No rooms"}}  -->
+
+<div *ngIf="rooms.availableRooms > 0">
+    <hinv-rooms-list [rooms] = "roomList"></hinv-rooms-list>  
+</div>
+
+<button (click)="toggle()">Toggle</button>
+
+<!-- document.getElementById('numberOfRooms').innerHTML = '{{numberOfRooms}}' -->
