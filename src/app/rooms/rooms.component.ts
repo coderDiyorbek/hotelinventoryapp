@@ -22,6 +22,8 @@ export class RoomsComponent implements OnInit {
 
   roomList: RoomList[] = [];
 
+  selectedRoom!: RoomList;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -64,5 +66,28 @@ export class RoomsComponent implements OnInit {
 
   toggle() {
     this.hideRooms = !this.hideRooms;
+  }
+
+  selectRoom(room: RoomList) {
+    this.selectedRoom = room;
+    console.log(room);
+  }
+
+  addRoom() {
+    const room: RoomList = {
+      roomNumber: 4,
+      roomType: "Deluxe room",
+      amenities: "Air-conditioner, Free Wi-FI, TV, Bathroom, Kitchen",
+      price: 500,
+      photos:
+        "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?cs=srgb&dl=pexels-pixabay-164595.jpg&fm=jpg",
+      checkinTime: new Date("11-Nov-2022"),
+      checkoutTime: new Date("12-Nov-2022"),
+      rating: 4.5,
+    };
+
+    // this.roomList.push(room);
+
+    this.roomList = [...this.roomList, room]; // allRight
   }
 }
