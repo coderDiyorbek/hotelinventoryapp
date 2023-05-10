@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, QueryList, ViewChild, ViewChildren } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { Room, RoomList } from "./rooms";
 import { HeaderComponent } from "../header/header.component";
@@ -29,11 +29,13 @@ export class RoomsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
+  @ViewChildren(HeaderComponent) headerChildrenComponent !:  QueryList<HeaderComponent>;
+
   constructor() {}
   
   ngOnInit(): void {
     
-    console.log(this.headerComponent);
+    // console.log(this.headerComponent);
     this.roomList = [
       {
         roomNumber: 1,
@@ -71,8 +73,12 @@ export class RoomsComponent implements OnInit, AfterViewInit {
     ];
   }
   
-  ngAfterViewInit(): void {
-    console.log(this.headerComponent);
+  ngAfterViewInit(){
+    this.headerComponent.title = "Room View (in ngAfterViewInit)";
+    // console.log(this.headerComponent);
+
+    // console.log(this.headerChildrenComponent);
+    this.headerChildrenComponent.last.title = "Last Title";
   }
   toggle() {
     this.hideRooms = !this.hideRooms;
